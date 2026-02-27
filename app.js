@@ -2,6 +2,9 @@ let userscore = 0;
 let compscore = 0;
 
 const choices = document.querySelectorAll(".choice");
+const msg = document.querySelector("#msg");
+const yourscore=document.querySelector("#user-score");
+const machinescore=document.querySelector("comp-score");
 
 const getcompchoice = () => {
     const options = ["rock", "paper", "scissor"];
@@ -10,15 +13,19 @@ const getcompchoice = () => {
 }
 
 const drawgame = () => {
-    console.log("game was draw.")
+    msg.innerText = "Game was draw";
 }
 
-const compWin=()=>{
-    console.log("computer win the game");
+const compWin = () => {
+    msg.innerText = "Comp win the Game";
+    compscore++;
+    machinescore.innerText=compscore;
 }
 
-const userWin=()=>{
-    console.log("you win the game");
+const userWin = () => {
+    msg.innerText = "You win the Game";
+    userscore++;
+    yourscore.innerText=userscore;
 }
 
 const playgame = (userchoice) => {
@@ -30,13 +37,14 @@ const playgame = (userchoice) => {
 
     if (userchoice === compchoice) {
         drawgame();
+        return;
     }
 
-    else if(userchoice=="rock" && compchoice=="paper" || userchoice=="paper" && compchoice=="scissor" || userchoice=="scissor" && compchoice=="rock"){
+    else if ((userchoice == "rock" && compchoice == "paper") || (userchoice == "paper" && compchoice == "scissor") || (userchoice == "scissor" && compchoice == "rock")) {
         compWin();
     }
 
-    else{
+    else {
         userWin();
     }
 }
